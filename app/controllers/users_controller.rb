@@ -3,10 +3,11 @@ class UsersController < ApplicationController
   def index
     if params[:query].present?
       # Generate SQL query based on the search term
-      @users = User.where("name LIKE ?", "%#{params[:query]}%")
+      @users = User.where("email LIKE ?", "%#{params[:query]}%")
+      #@users = User.where("email LIKE '%#{params[:query]}%'")
     else
       # If no query parameter is passed, show all users
-      @users = User.all
+      @users = User.none
     end
   end
 
